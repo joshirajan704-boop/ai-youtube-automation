@@ -28,7 +28,7 @@ app.post("/chat", async (req, res) => {
   model: "gemini-2.5-flash-lite",
   contents: message,
 });
-
+console.log(response);
     res.json({
       reply: response.text,
     });
