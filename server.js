@@ -14,13 +14,19 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 app.get("/", (req, res) => {
   res.json({
     status: "success",
-    message: "AI YouTube Automation Backend Running 🚀"
+    message: "Backend Running 🚀"
   });
 });
 
 app.post("/chat", async (req, res) => {
   try {
     const { message } = req.body;
+
+    if (!message) {
+      return res.status(400).json({
+        reply: "Message is required"
+      });
+    }
 
     const model = genAI.getGenerativeModel({
       model: "gemini-2.0-flash"
@@ -38,7 +44,7 @@ app.post("/chat", async (req, res) => {
     console.error(err);
 
     res.status(500).json({
-      error: err.message
+      reply: err.message
     });
   }
 });
@@ -46,5 +52,5 @@ app.post("/chat", async (req, res) => {
 const PORT = process.env.PORT || 10000;
 
 app.listen(PORT, () => {
-  console.log("Server Running on " + PORT);
+  console.log(`Server running on port ${PORT}`);
 });
