@@ -1,4 +1,4 @@
-const API_URL = "https://YOUR_RENDER_URL.onrender.com/chat";
+const API_URL = "https://ai-youtube-automation-g2ua.onrender.com/chat";
 
 async function sendMessage() {
 
